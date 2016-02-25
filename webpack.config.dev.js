@@ -4,8 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-hot-middleware/client',
-    './src/index'
+    path.join(__dirname, './src/index'),
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -13,7 +12,6 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
   module: {
@@ -30,5 +28,8 @@ module.exports = {
       test: /\.json$/,
       loader: 'json'
     }
-  ]}
+  ]},
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules')
+  }
 };

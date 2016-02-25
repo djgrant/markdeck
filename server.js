@@ -8,7 +8,9 @@ var compiler = webpack(config);
 var fs = require('fs');
 var marked = require('marked');
 
-var slidesFile = path.resolve(__dirname, process.argv[2]);
+console.log(__dirname);
+
+var slidesFile = path.resolve(process.cwd(), process.argv[2]);
 var slidesHTML = marked(fs.readFileSync(slidesFile, 'utf8'));
 var slides = slidesHTML.split('<hr>');
 
@@ -21,10 +23,9 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 
-app.use(require('webpack-hot-middleware')(compiler));
-
 app.get('*', function(req, res) {
-  res.render('index', { slides: JSON.stringify(slides) });
+  res.render(path.join(__dirname, './views/index'),
+  { slides: JSON.stringify(slides) });
 });
 
 app.listen(5000, 'localhost', function(err) {
