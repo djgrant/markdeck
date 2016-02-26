@@ -8,11 +8,8 @@ var compiler = webpack(config);
 var fs = require('fs');
 var marked = require('marked');
 
-console.log(__dirname);
-
 var slidesFile = path.resolve(process.cwd(), process.argv[2]);
-var slidesHTML = marked(fs.readFileSync(slidesFile, 'utf8'));
-var slides = slidesHTML.split('<hr>');
+var slidesHTML = fs.readFileSync(slidesFile, 'utf8');
 
 var exphbs = require('express-handlebars');
 app.engine('.hbs', exphbs({ extname: '.hbs' }));
@@ -25,7 +22,7 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.get('*', function(req, res) {
   res.render(path.join(__dirname, './views/index'),
-  { slides: JSON.stringify(slides) });
+  { slidesHTML: JSON.stringify(slidesHTML) });
 });
 
 app.listen(5000, 'localhost', function(err) {

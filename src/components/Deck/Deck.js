@@ -12,7 +12,7 @@ export default class Deck extends Component {
 					 style={{
 					   width: `${Children.count(children) * 100}vw`,
 					   transform: `translate(${-currentSlide * 100}vw, 0)`,
-					   transition: 'all .25s ease-out'
+					   transition: 'all 0 ease-out'
              	}}>
 					{Children.map(children, this.wrapChild)}
 				</div>

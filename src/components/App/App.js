@@ -3,8 +3,29 @@ import Deck from '../Deck';
 import Slide from '../Slide';
 import { connect } from 'react-redux';
 import { nextSlide, prevSlide } from './duck';
+import Remarkable from 'remarkable';
+import hljs from 'highlight.js';
 
-const slides = window.slides;
+const md = new Remarkable({
+	html: true,
+  highlight(str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (err) {}
+    }
+
+    try {
+      return hljs.highlightAuto(str).value;
+    } catch (err) {}
+
+    return '';
+  }
+});
+
+const slidesHTML = window.slidesHTML;
+const slides = md.render(slidesHTML).split('<hr>');
+
 const LEFT_ARROW = 37;
 const	RIGHT_ARROW = 39;
 
