@@ -1,6 +1,6 @@
 {
   "name": "markdeck",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Generate slide decks from markdown files from within the command line.",
   "scripts": {
     "clean": "rimraf dist",
