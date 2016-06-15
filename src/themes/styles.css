@@ -178,3 +178,42 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-strong {
   font-weight: bold;
 }
+
+table {
+    width: 100%;
+    min-width: 500px;
+    overflow: auto;
+    word-break: normal;
+    word-break: keep-all;
+    color: #333;
+}
+
+table th,
+table td {
+    position: relative;
+    padding: 6px 13px;
+    border: 1px solid #ddd;
+    text-align: center;
+    height: 100px;
+    font-weight: normal;
+}
+
+table tr {
+    background-color: #fff;
+    border-top: 1px solid #ccc
+}
+
+table tr:nth-child(2n) {
+    background-color: #f8f8f8
+}
+
+table th strong,
+table td strong {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  border: 3px solid red;
+  line-height: 100px;
+}
